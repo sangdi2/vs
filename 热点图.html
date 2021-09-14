@@ -1,0 +1,83 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>热点图</title>
+     <style>
+         .re {
+             width: 1000px;
+             height: 900px;
+             background:url("./vs/pic/rediantu.png");
+             margin: 0 auto;
+             position: relative;
+         }
+         .kuang {
+            
+            position:absolute;
+             top:316px;
+             left:772px;
+             width: 8px;
+             height: 8px;
+         }
+         .dot {
+            
+             width: 8px;
+             height: 8px;
+             background-color: blueviolet;
+             box-shadow: 0 0 12px blueviolet;
+             border-radius: 50%;
+         }
+         .kuang div[class^="pulse"] {
+            position: absolute;
+            top : 50%;
+             left:50%;
+
+             
+             transform:translate(-50%,-50%);
+            
+             width: 8px;
+             height: 8px;
+            
+             box-shadow: 0 0 12px blueviolet;
+             border-radius: 50%;
+             animation: salce 1.2s linear infinite;
+         }
+        .re .kuang .pulse2 {
+             animation-delay:0.4 s;
+         }
+        .re .kuang .pulse3 {
+             animation-delay: 0.8s;
+         }
+         @keyframes salce {
+             0% {
+                 width: 0;
+                 height: 0;
+             }
+             70% {
+                 width: 40px;
+                 height: 40px;
+                 opacity: 1;
+             }
+             100% {
+                 width: 70px;
+                 height: 70px;
+                 opacity: 0;
+             }
+             
+         }
+         
+     </style>
+ </head>
+ <body>
+     <div class="re">
+         <div class="kuang">
+      <div class="dot"></div>
+      <div class="pulse1"></div>
+      <div class="pulse2"></div>
+      <div class="pulse3"></div>
+    </div>
+     </div>
+ </body>
+ </html>
