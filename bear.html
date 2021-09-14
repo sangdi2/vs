@@ -7,14 +7,24 @@
     <title>奔跑的熊</title>
     <style>
         body {
-            background-color: black;
+            background-color: #c3d3db;
         }
         
         .bear {
+            position: absolute;
+            bottom: 0;
             width: 205px;
             height:100px ;
             background: url(./vs/pic/bearr.png);
-            animation: w 1s steps(8) infinite;
+            animation: w 1s steps(8) infinite,wa 7s forwards;
+            
+        }
+        .bg {
+            position: relative;
+            width: 100%;
+            height: 139px;
+            background: url(./vs/pic/bg.png);
+            animation: bg 12s linear infinite;
             
         }
         @keyframes w {
@@ -25,11 +35,30 @@
                 background-position: -1600px,0;
             }
         }
+        @keyframes wa {
+            0%{
+                left:0;
+            }
+            100% {
+                left:50%;
+            }
+        }
+        @keyframes bg {
+            0%  {
+                background-position: 0,0;
+            }
+            100% {
+                background-position: -100%,0;
+            }
+            
+        }
 
     </style>
 
 </head>
 <body>
+    <div class="bg">
     <div class="bear"></div>
+</div>
 </body>
 </html>
