@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奔跑的熊</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        
+        .bear {
+            width: 205px;
+            height:100px ;
+            background: url(./vs/pic/bearr.png);
+            animation: w 1s steps(8) infinite;
+            
+        }
+        @keyframes w {
+            0%{
+                background-position: 0,0;
+            }
+            100% {
+                background-position: -1600px,0;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="bear"></div>
+</body>
+</html>
