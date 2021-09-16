@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D导航栏</title>
+    <style>
+        body {
+           
+        }
+        .box,.boxt {
+            position: relative;
+            width: 100px;
+            height: 50px;
+            float: left;
+            margin-left: 20px;
+            transition: all 2s;
+            transform-style: preserve-3d;
+        }
+        .one,.oneo {
+            position: absolute;
+            top:25px;
+            left: 0;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: pink;
+            
+            transform:rotateX(-90deg);
+            
+        }
+        .twot,.two {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: purple;
+            transform:translateZ(25px);
+        }
+        .boxt:hover {
+            transform:rotateX(90deg);
+        }
+        .box:hover {
+            transform:rotateX(90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="one">你好菜</div>
+        <div class="two">我不菜</div>
+    </div>
+    <div class="boxt">
+        <div class="oneo">你好菜</div>
+        <div class="twot">我不菜</div>
+    </div>
+</body>
+</html>
