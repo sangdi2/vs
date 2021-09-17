@@ -16,6 +16,7 @@
             height: 200px;
             transition: all 2s;
             transform-style: preserve-3d;
+            /* transform: rotateY(0deg); */
         }
         .one {
             position: absolute;
@@ -40,16 +41,23 @@
             text-align: center;
             line-height: 200px;
         }
-        .box:hover {
-            transform: rotateY(180deg);
+        /* .box:hover {
+            transform: rotateY(0deg);
             
-        }
+        } */
     </style>
+    
 </head>
 <body>
-    <div class="box">
+    <div class="box" id="cl">
         <div class="one">你好菜</div>
         <div class="two">我不菜</div>
     </div>
+    <button onclick="test()">你好</button>
+    <script>
+       function test(){
+           document.getElementById("cl").style.transform="rotateY(180deg)";
+       }
+    </script>
 </body>
 </html>
