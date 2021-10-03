@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易ATM机</title>
+</head>
+<script>
+    do {
+    var number=prompt('请输入您要的操作:'+'\n'+'1.存钱'+'\n'+'2.取钱'+'\n'+'3.显示余额'+'\n'+'4.退出'+'\n');
+
+    switch(number){
+        case '1':var money=prompt('请输入您要存的钱数：');
+            money=parseInt(money)+100;
+        alert(money);
+        continue;
+        case '2':var moneyo=prompt('请输入您要取的钱数：');
+        money=parseInt(money)-parseInt(moneyo);
+        alert(money);
+        continue;
+        case '3':alert('您的余额为：'+money);
+        continue;
+        case '4':
+            alert('您正在退出！');
+            break;
+    }
+    break;
+    
+}while(number)
+</script>
+<body>
+    
+</body>
+</html>
