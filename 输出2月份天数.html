@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输出2月份天数</title>
+    <script>
+        var year=prompt("请输入年份：");
+         function isrunyear(year)
+        {
+            var flag=false;
+            if (year%4==0&&year%100!=0||year%400==0)
+            {
+                flag=true;
+            }
+            return flag;
+        }
+        function day ()
+        {
+            if(isrunyear(year)==true)
+            {
+                alert('此年2月份的天数是29天');
+            }else
+            {
+                alert('此年2月份的天数是28天');
+            }
+        }
+        day();
+       
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
