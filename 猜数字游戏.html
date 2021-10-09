@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字游戏</title>
+    <script>
+        function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值 
+}
+
+var radom=getRandomIntInclusive(1,10);
+
+
+for ( var i=0;i>=0;i++)
+{
+    var number=prompt('请随机输入1~10之间的数字：');
+    if(radom<number)
+{
+    alert('数字大了');
+    continue;
+}else if (radom>number)
+{
+    alert('数字小了');
+    continue;
+}else {
+    alert('恭喜你猜对了');
+    break;}
+
+}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
