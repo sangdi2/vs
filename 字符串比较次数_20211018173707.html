@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串比较次数</title>
+    <script>
+        var str ='abcoefoxyozzopp';
+        var arr1 = [];
+        var num =[];
+        
+        var max=0;
+        for (var i=0;i<str.length;i++)
+        {
+            if(arr1.indexOf(str[i])==-1)
+            {
+                arr1.push(str[i]);
+            }
+        }
+      for (var j=0;j<arr1.length;j++)
+      {
+        var num1=0;
+          var reult =str.indexOf(arr1[j]);
+          while(reult!=-1)
+          {
+           
+              num1++;
+              reult=str.indexOf(arr1[j],reult+1)
+
+          }
+          num[j]=num1;
+      }
+      console.log(arr1);
+      console.log(num);
+     
+    var cishu=Math.max(...num);
+    var suoyin =num.indexOf(cishu);
+    var zifu =arr1[suoyin];
+    console.log(cishu+'hhh'+zifu);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
