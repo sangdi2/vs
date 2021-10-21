@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示密码明文案例</title>
+    <style>
+      .boxx {
+          width: 167px;
+          position: relative;
+          margin: 300px auto;
+      }
+      input {
+          border: 0 solid transparent;
+          border-bottom: 1px solid black;
+          outline: none;
+      }
+      .box {
+          position: absolute;
+          top:8px;
+          left: 142px;
+          width: 0;
+          height: 0;
+          border-top: 10px solid black;
+          border-left: 10px solid transparent;
+          border-bottom: 10px solid transparent;
+          border-right: 10px solid transparent;
+
+      }
+    </style>
+</head>
+<body>
+    <div class="boxx">
+        <input type="password">
+        <div class="box" id='box'> </div>
+    </div>
+    <script>
+        var pwd =document.querySelector('input');
+        var box = document.getElementById('box');
+        var flag =0;
+        box.onclick=function(){
+            if(flag==0)
+            {
+                pwd.type='text';
+                flag=1;
+
+            }else
+            {
+                pwd.type='password';
+                flag=0;
+            }
+           
+            
+        }
+      
+    </script>
+</body>
+</html>
