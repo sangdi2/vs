@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密码框校验</title>
+    <style>
+        .information {
+            color: skyblue;
+            
+        }
+    </style>
+</head>
+<body>
+    <input type="password" id='pass'><div class="information">请输入6-12位的密码</div>
+    <script>
+        var password = document.getElementById('pass');
+        var div = document.querySelector('div');
+        password.onfocus =function(){
+           
+                div.style.color='skyblue';
+                div.innerHTML='请输入6-12位的密码';
+           
+        }
+        password.onblur =function ()
+        {
+           
+            console.dir(password);
+            if(password.value.length<6||password.value.length>12){
+                div.style.color='red';
+                div.innerHTML='您输入的位数错误!';
+            }else
+            {
+                div.style.color='green';
+                div.innerHTML='恭喜您输入正确';
+            }
+        }
+    </script>
+</body>
+</html>
