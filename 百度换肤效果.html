@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度换肤效果</title>
+    <style>
+        body {
+            height: 1000px;
+            background-image: url("./vs/pic/one.jpg") ;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .box {
+            width: 1000px;
+            height: 100px;
+            margin: 20px auto;
+        }
+        img {
+            width: 200px;
+            height: 100px;
+            
+            float: left;
+
+        }
+       
+        /* li:nth-child(1){
+            background: url("./vs/pic/one.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        li:nth-child(2){
+            background: url("./vs/pic/two.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        li:nth-child(3){
+            background: url("./vs/pic/three.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        li:nth-child(4){
+            background: url("./vs/pic/four.jpg") no-repeat;
+            background-size: 100% 100%;
+        } */
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src='./vs/pic/one.jpg'></li>
+            <li><img src='./vs/pic/two.jpg'></li>
+            <li><img src='./vs/pic/three.jpg'></li>
+            <li><img src='./vs/pic/four.jpg'></li>
+        </ul>
+    </div>
+    <script>
+     var imgs =document.querySelector('.box').querySelectorAll('img');
+     
+    
+     for (var i=0;i<imgs.length;i++)
+     {
+        
+         imgs[i].onclick =function ()
+         {
+            document.body.style.backgroundImage='url('+this.src+')';
+        
+         }
+     }
+    </script>
+</body>
+</html>
