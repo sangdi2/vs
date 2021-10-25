@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉菜单</title>
+    <style>
+        .pink {
+            width: 100px;
+            height: 50px;
+            background-color: pink;
+        }
+        .red {
+            width: 100px;
+            height: 50px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="bo" id='bo'>
+    <div >pink老师</div>
+    <div class="red" id='red'>我是你粉丝</div>
+    </div>
+    <script>
+        var bo = document.getElementById('bo');
+        var red = document.getElementById('red');
+        bo.onmouseover =function (){
+            red.style.display='block';
+        }
+        bo.onmouseleave =function (){
+            red.style.display='none';
+        }
+        
+    </script>
+</body>
+</html>
