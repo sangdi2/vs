@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选反选效果</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>全选</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td >
+                <td>1</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var theads = document.querySelector('thead').querySelector('input');
+        var tbodys =document.querySelector('tbody').querySelectorAll('input');
+        
+        theads.onclick = function(){
+        for (var i=0;i<tbodys.length;i++){
+            tbodys[i].checked=this.checked;
+        }
+    }
+    for (var i=0;i<tbodys.length;i++){
+        tbodys[i].onclick = function(){
+            var flag =true;
+         for( var i=0;i<tbodys.length;i++){
+             if(!tbodys[i].checked){
+                 flag =false;
+                 break;
+             }
+         }
+         theads.checked=flag;
+        }
+       
+
+    }
+    </script>
+</body>
+</html>
