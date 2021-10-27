@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab栏切换</title>
+    <style>
+        .box {
+            width: 329px;
+            height: 100px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav {
+           
+            height: 30px;
+            background-color: #d5d5d5;
+            padding: 0 ;
+            margin: 0;
+        }
+        .content {
+            height: 50px;
+        }
+        .nav li {
+            float: left;
+           margin: 0;
+           padding: 3px 20px;
+        }
+        ul {
+            list-style: none;
+            height: 30px;
+            padding: 0;
+            margin: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+         <div class="nav">
+         <ul>
+            <li style="background-color: red;">商品介绍</li>
+            <li>规格与包装</li>
+            <li>售后保障</li>
+        </ul>
+        </div>
+        <div class="content">
+            <ul>
+                <li>商品介绍内容</li>
+                <li style="display: none;">规格与包装内容</li>
+                <li style="display: none;">售后保障内容</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var liso = document.querySelector('.nav').querySelectorAll('li');
+        var list = document.querySelector('.content').querySelectorAll('li');
+        for (var i=0;i<liso.length;i++){
+            liso[i].setAttribute('index',i);
+            liso[i].onclick = function()
+            {
+                
+                for(var i=0;i<liso.length;i++)
+                {
+                    liso[i].style.backgroundColor='#d5d5d5';
+                }
+                this.style.backgroundColor='red';
+                
+                var index =this.getAttribute('index');
+                for (var i=0;i<list.length;i++)
+            {
+                list[i].style.display='none';
+            }
+            list[index].style.display='block';
+            }
+            
+            
+           
+        }
+       
+       
+    </script>
+</body>
+</html>
