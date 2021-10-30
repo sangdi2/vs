@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布留言板</title>
+    <style>
+       textarea {
+            width: 400px;
+            height: 200px;
+            resize: none;
+        }
+        .box {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    
+    <textarea></textarea>
+    <button>发布</button>
+    <ul></ul>
+    <script>
+        var text = document.querySelector('textarea');
+        var btn = text.nextElementSibling;
+        var ul =btn.nextElementSibling;
+        btn.onclick=function ()
+        {
+            var li = document.createElement('li');
+            ul.appendChild(li);
+            li.innerHTML =text.value;
+            li.className='box';
+        }
+    </script>
+</body>
+</html>
