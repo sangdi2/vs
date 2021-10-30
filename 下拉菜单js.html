@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉菜单js</title>
+    <style>
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav {
+            float: left;
+            margin-left: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <ul class="ul">
+        <li class="nav"><a href=#>微博</a>
+            <ul style="display: none;">
+                <li>评论</li>
+                <li>@我</li>
+                <li>私信</li>
+            </ul>
+        </li>
+        <li class="nav">
+            <a href=#>微博</a>
+            <ul style="display: none;">
+                <li>评论</li>
+                <li>@我</li>
+                <li>私信</li>
+            </ul>
+        </li>
+        <li class="nav">
+            <a href=#>微博</a>
+            <ul style="display: none;">
+                <li>评论</li>
+                <li>@我</li>
+                <li>私信</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+         var ul = document.querySelector('.ul');
+         var lis =ul.children;
+         for (var i=0;i<lis.length;i++)
+         {
+             lis[i].onmouseover =function()
+             {
+                 this.children[1].style.display = 'block';
+             }
+             lis[i].onmouseout =function()
+             {
+                 this.children[1].style.display = 'none';
+             }
+         }
+    </script>
+</body>
+</html>
