@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态生成表格</title>
+    <style>
+       table,table tr th, table tr td { 
+ border:1px solid #ccc;
+ text-align: center;
+ }
+ table{ 
+width: 400px;
+ border-collapse: collapse;
+ }   
+        
+    </style>
+</head>
+<body>
+    <table >
+        <thead>
+            <tr>
+           <th>姓名</th>
+           <th>分数</th>
+           <th>科目</th>
+           <th>操作</th>
+           </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        var datas =[{
+            name:'魏璎珞',
+            score:'90',
+            subject:'javascript'
+        },
+        {
+            name:'弘历',
+            score:'80',
+            subject:'javascript'
+        },
+        {
+            name:'傅恒',
+            score:'100',
+            subject:'javascript'
+        },
+        {
+            name:'尔晴',
+            score:'90',
+            subject:'javascript'
+        },];
+        var tbody =document.querySelector('tbody');
+        for (var i=0;i<datas.length;i++)
+        {
+        var tr =document.createElement('tr');
+        tbody.appendChild(tr);
+        for(k in datas[i])
+        {
+            var td =document.createElement('td');
+            tr.appendChild(td);
+            td.innerHTML=datas[i][k];
+        }
+        var td =document.createElement('td');
+        tr.appendChild(td);
+        td.innerHTML='<a href="javascript:;">删除<a>'
+        }
+        var as =document.querySelectorAll('a');
+        for (var i=0;i<as.length;i++)
+        {
+            as[i].onclick = function()
+            {
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+        
+    </script>
+</body>
+</html>
