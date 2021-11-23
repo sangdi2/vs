@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东放大镜效果</title>
+    <style>
+        .smallimg {
+            position: relative;
+            float: left;
+            width: 450px;
+            height: 450px;
+           background-image: url("./vs/pic/jingdong.jpg");
+        }
+        .bigimg {
+            position: relative;
+            float: left;
+            width: 600px;
+            height: 600px;
+            background-image: url();
+            display: none;
+            overflow: hidden;
+        }
+        .bigimg img {
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+        .yellow {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+            opacity: .5;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="smallimg">
+        <div class="yellow"></div>
+    </div>
+    <div class="bigimg"><img src="./vs/pic/bigjingdong.png"></div>
+    <script>
+        var smallimg =document.querySelector('.smallimg');
+        var bigimg =document.querySelector('.bigimg');    
+        var yellow =document.querySelector('.yellow');
+        smallimg.addEventListener('mouseover',function()
+        {
+          yellow.style.display='block';
+          bigimg.style.display='block';
+        });
+        smallimg.addEventListener('mouseout',function()
+        {
+          yellow.style.display='none';
+          bigimg.style.display='none';
+        });
+        smallimg.addEventListener('mousemove',function(e)
+        {
+           var boxleft = e.pageX-this.offsetLeft;
+           var boxtop = e.pageY-this.offsetTop;
+           var x=boxleft-yellow.offsetWidth/2;
+           var y =boxtop-yellow.offsetHeight/2;
+          
+           if(x<=0)
+           {
+           x=0;
+           }else if( x>=smallimg.offsetWidth-yellow.offsetWidth)
+           {
+               x=smallimg.offsetWidth-yellow.offsetWidth;
+           }
+           if(y<=0)
+           {
+               y=0;
+           }else if(y>=smallimg.offsetHeight-yellow.offsetHeight)
+           {
+               y=smallimg.offsetHeight-yellow.offsetHeight;
+           }
+           yellow.style.left=x+'px';
+           yellow.style.top=y+'px';
+           var img =document.querySelector('img');
+           var imgx =boxleft*(img.offsetWidth-bigimg.offsetWidth)/(smallimg.offsetWidth-yellow.offsetWidth);
+           var imgy =boxtop*(img.offsetHeight-bigimg.offsetHeight)/(smallimg.offsetHeight-yellow.offsetHeight);
+           img.style.left=-imgx+'px';
+           img.style.top=-imgy+'px';
+           
+        })
+    </script>
+</body>
+</html>
