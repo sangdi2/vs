@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仿淘宝固定侧边栏案例</title>
+    <style>
+        .w {
+            margin: 0 auto;
+        }
+        .header {
+            width: 1000px;
+            height: 200px;
+            background-color: pink;
+        }
+        .goback {
+            position: absolute;
+            top:300px;
+            right: 202px;
+            width: 56px;
+            height: 209px;
+            background-color: yellow;
+        }
+        .banner {
+            
+            width: 1000px;
+            height: 300px;
+            background-color: red;
+        }
+        .main {
+            width: 1000px;
+            height: 800px;
+            background-color: orange;
+        }
+        .back {
+            width: 36px;
+            height: 56px;
+            margin: 0 auto;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header w"></div>
+    <div class="goback w">
+        <div class="back">
+            返回顶部
+        </div>
+    </div>
+    <div class="banner w"></div>
+    <div class="main w"></div>
+    <script>
+        var banner =document.querySelector('.banner');
+        var bannertop =banner.offsetTop;
+        var goback =document.querySelector('.goback');
+        var topp =goback.offsetTop-banner.offsetTop;
+        var main=document.querySelector('.main');
+        var maintop =main.offsetTop;
+        var back =document.querySelector('.back');
+        document.addEventListener('scroll',function(){
+          if(window.pageYOffset>=bannertop)
+          {
+             goback.style.position='fixed';
+             goback.style.top=topp+'px';
+          }else {
+              goback.style.position='absolute';
+              goback.style.top='300px';
+          }
+          if(window.pageYOffset>=maintop)
+          {
+            back.style.display='block';
+          }else
+          {
+              back.style.display='none';
+          }
+        });
+    </script>
+</body>
+</html>
