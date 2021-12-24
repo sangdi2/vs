@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东放大镜效果（2）</title>
+    <style>
+        .pone {
+            position: relative;
+            float: left;
+      
+        }
+        .pone img {
+            width: 400px;
+            height: 400px;
+        }
+        .yellow {
+            display: none;
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            opacity: .5;
+            cursor: move;
+        }
+        .bigpone {
+            position: relative;
+           
+            display: none;
+            width: 494px;
+            height: 446px;
+            float: left;
+          
+            overflow: hidden;
+        }
+        .img {
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="pone">
+        <img src="../vs练习/vs/pic/jingdong.jpg">
+        <div class="yellow"></div>
+    </div>
+    <div class="bigpone">
+        <img src="../vs练习/vs/pic/bigjingdong.png" class="img">
+    </div>
+    <script>
+        var pone =document.querySelector('.pone');
+        var yellow =document.querySelector('.yellow');
+        var bigpone = document.querySelector('.bigpone');
+        var img =document.querySelector('.img');
+        pone.addEventListener('mouseover',function(){
+            bigpone.style.display='block';
+            yellow.style.display='block';
+        });
+        pone.addEventListener('mouseout',function(){
+            bigpone.style.display='none';
+            yellow.style.display='none';
+        });
+        pone.addEventListener('mousemove',function(e){
+            var x =e.pageX;
+            var y =e.pageY;
+            console.log(x);
+            var xx =x-this.offsetLeft-yellow.offsetWidth/2;
+            var yy =y-this.offsetTop-yellow.offsetHeight/2;
+            var maxxx=this.offsetWidth-yellow.offsetWidth;
+            var maxyy=this.offsetHeight-yellow.offsetHeight;
+            if(xx<=0)
+            {
+              xx=0;
+            }
+            if(xx>=maxxx)
+            {
+                xx=maxxx;
+            }
+            if(yy<=0)
+            {
+              yy=0;
+            }
+            if(yy>=maxyy)
+            {
+                yy=maxyy;
+            }
+            yellow.style.left=xx +'px';
+            yellow.style.top=yy+'px';
+            var bigponexx =xx * img.offsetWidth/this.offsetWidth;
+            var bigponeyy =yy *img.offsetHeight/this.offsetHeight;
+            img.style.left=-bigponexx+'px';
+            img.style.top=-bigponeyy+'px';
+        });
+    </script>
+</body>
+</html>
