@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vs练习/annimate.js"></script>
+    <title>网页轮播图</title>
+    <style>
+        .big ul li {
+          width: 600px;
+          height: 400px;
+          float: left;
+        }
+        .big ul li img{
+          width: 600px;
+          height: 400px;
+        }
+        .big ul {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 3000px;
+            height: 400px;
+        }
+        .big {
+            width: 600px;
+          height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        .big .left,.big .right{
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            opacity: .5;
+            text-align: center;
+            line-height: 20px;
+        }
+        .big .left{
+            display: none;
+            position: absolute;
+            top:41%;
+            left: 0;
+        }
+        .big .right{
+            display: none;
+            position: absolute;
+            top:41%;
+            right: 0;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        ul,ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .big ol li {
+            
+            width: 10px;
+            height: 10px;
+            /* background-color: white; */
+            float: left;
+            border-radius: 6px;
+            margin-left: 2px;
+            border: 1px solid white;
+        }
+        .big ol {
+            position: absolute;
+            top:96%;
+            left: 45%;
+        }
+        .current {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="big">
+        <ul>
+            <li><a href='javascript:;'><img src='../vs练习/vs/pic/one.jpg'></a></li>
+            <li><a href='javascript:;'><img src='../vs练习/vs/pic/two.jpg'></a></li>
+            <li><a href='javascript:;'><img src='../vs练习/vs/pic/three.jpg'></a></li>
+            <li><a href='javascript:;'><img src='../vs练习/vs/pic/four.jpg'></a></li>
+            
+        </ul>
+        <div class="left"><a href="javascript:;"><</a></div>
+        <div class="right"><a href="javascript:;">></a></div>
+        <ol>
+            <!-- <li><a href="javascript:;"></a></li>
+            <li><a href="javascript:;"></a></li>
+            <li><a href="javascript:;"></a></li>
+            <li><a href="javascript:;"></a></li> -->
+        </ol>
+    </div>
+    <script>
+        //显示隐藏左右按钮
+        var big =document.querySelector('.big');
+        var left =document.querySelector('.left');
+        var right =document.querySelector('.right');
+        var num=0;
+        var circle =0;
+        big.addEventListener('mouseenter',function(){
+           left.style.display='block';
+           right.style.display='block';
+           clearInterval(timmer);
+           timmer=null;
+        });
+        big.addEventListener('mouseleave',function(){
+           left.style.display='none';
+           right.style.display='none';
+            timmer=setInterval(function(){
+           right.click();
+        },2000);
+
+        });
+        //动态生成圆圈
+        var ul =big.querySelector('ul');
+        var ol =big.querySelector('ol');
+        for(var i=0;i<ul.children.length;i++)
+        {
+            var li =document.createElement('li');
+            ol.appendChild(li);
+            li.setAttribute('index',i);
+            
+        }
+        ol.children[0].className='current';
+        for (var i=0;i<ol.children.length;i++)
+        {
+            ol.children[i].addEventListener('click',function(){
+                 //小圆圈排他思想
+                for(var i=0;i<ol.children.length;i++)
+                {
+                    ol.children[i].className='';
+                }
+                this.className='current';
+                //点击圆圈滚动图片
+                var index =this.getAttribute('index');
+                num=index;
+                circle=index;
+                annimate(ul,-index*big.offsetWidth);
+            });
+            
+        }
+        var clone =ul.children[0].cloneNode(true);
+        ul.appendChild(clone);
+        right.addEventListener('click',function(){
+           
+           if(num==ul.children.length-1)
+           {
+               console.log(num+'aaa');
+            // annimate(ul,-num*big.offsetWidth);
+               ul.style.left=0;
+               num=0;
+           }
+           num++;
+            annimate(ul,-num*big.offsetWidth);
+           console.log(num);
+           
+       
+           circle++;
+               if(circle==ol.children.length)
+           {
+            
+                circle=0;
+           }
+           for(var i=0;i<ol.children.length;i++)
+                {
+                    ol.children[i].className='';
+                }
+           ol.children[circle].className='current';
+
+        });
+        left.addEventListener('click',function(){
+           
+           if(num==0)
+           {
+               console.log(num+'aaa');
+               num=ul.children.length-1;
+            // annimate(ul,-num*big.offsetWidth);
+               ul.style.left=-num*big.offsetWidth+'px';
+               
+           }
+           num--;
+            annimate(ul,-num*big.offsetWidth);
+           console.log(num);
+           
+       
+           circle--;
+               if(circle<0)
+           {
+            
+                circle=ol.children.length-1;
+           }
+           for(var i=0;i<ol.children.length;i++)
+                {
+                    ol.children[i].className='';
+                }
+           ol.children[circle].className='current';
+
+        });
+        var timmer=setInterval(function(){
+           right.click();
+        },2000);
+        
+
+    </script>
+</body>
+</html>
