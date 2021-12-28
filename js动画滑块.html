@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js动画滑块</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .big {
+            position: absolute;
+            top:0;
+            right: -150px;
+            width: 200px;
+            height: 50px;
+            background-color: pink;
+            line-height: 50px;
+        }
+        .small {
+            position: absolute;
+            top:0;
+            right: 0;
+            float: left;
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            text-align: center;
+            line-height: 50px;
+        }
+        .back {
+            float: left;
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="big">
+        
+        <div class="back">返回顶部</div>
+    </div>
+    <div class="small">←</div>
+    <script>
+        var small =document.querySelector('.small');
+       
+        var big =document.querySelector('.big');
+        console.log(big.offsetLeft);
+        function annimate(div,target,callback){
+            clearInterval(div.timmer);
+            div.timmer=setInterval(function(){
+                
+                var off =(target-div.offsetLeft)/10;
+                off=off>0?Math.ceil(off):Math.floor(off);
+                if(div.offsetLeft==target)
+                {
+                    clearInterval(div.timmer);
+                    if(callback)
+                    {
+                        callback();
+                    }
+                }
+           
+          div.style.left=div.offsetLeft+off+'px';
+            },30);
+        }
+        small.addEventListener('mouseover',function(){
+            annimate(big,1336,function(){
+              small.innerHTML='→';
+            });
+        })
+        small.addEventListener('mouseout',function(){
+            annimate(big,1486,function(){
+              small.innerHTML='←';
+            });
+        })
+        
+    </script>
+</body>
+</html>

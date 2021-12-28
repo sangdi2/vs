@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vs练习/annimate.js"></script>
+    <title>筋斗云案例</title>
+    <style>
+        .box {
+            /* width: 500px; */
+            /* height: 30px; */
+           
+            position: relative;
+            width: 800px;
+            height: 50px;
+            background-color: burlywood;
+            
+        }
+      ul {
+      
+            /* background-color: burlywood; */
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          position: relative;
+          
+      }
+       li {
+          float: left;
+          padding: 10px;
+          line-height: 30px;
+          /* background-color: rosybrown; */
+         cursor: pointer;
+      }
+      .bg {
+          position: absolute;
+          top:0;
+          left: 0;
+          width: 84px;
+          height: 50px;
+          background-color: chartreuse;
+       
+          
+      }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span class="bg">
+            
+        </span>
+        <ul>
+            <li>首页新闻</li>
+            <li>师资力量</li>
+            <li>活动策划</li>
+            <li>企业文化</li>
+            <li>招聘信息</li>
+        </ul>
+       
+    </div>
+    <script>
+        var lis= document.querySelectorAll('li');
+        var span =document.querySelector('.bg');
+        var current =0;
+        for(var i=0;i<lis.length;i++)
+        {
+            lis[i].addEventListener('mouseenter',function(){
+               annimate(span,this.offsetLeft);
+            });
+            lis[i].addEventListener('mouseleave',function(){
+               annimate(span,current);
+            });
+            lis[i].addEventListener('click',function(){
+                current=this.offsetLeft;
+                annimate(span,current);
+            });
+        }
+    </script>
+</body>
+</html>

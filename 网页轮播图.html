@@ -103,6 +103,7 @@
         var right =document.querySelector('.right');
         var num=0;
         var circle =0;
+        var flag=true;
         big.addEventListener('mouseenter',function(){
            left.style.display='block';
            right.style.display='block';
@@ -149,7 +150,10 @@
         ul.appendChild(clone);
         right.addEventListener('click',function(){
            
-           if(num==ul.children.length-1)
+           if(flag)
+           {
+               flag=false;
+               if(num==ul.children.length-1)
            {
                console.log(num+'aaa');
             // annimate(ul,-num*big.offsetWidth);
@@ -157,7 +161,9 @@
                num=0;
            }
            num++;
-            annimate(ul,-num*big.offsetWidth);
+            annimate(ul,-num*big.offsetWidth,function(){
+                flag=true;
+            });
            console.log(num);
            
        
@@ -172,11 +178,15 @@
                     ol.children[i].className='';
                 }
            ol.children[circle].className='current';
+           }
 
         });
         left.addEventListener('click',function(){
            
-           if(num==0)
+           if(flag)
+           {
+               flag=false;
+               if(num==0)
            {
                console.log(num+'aaa');
                num=ul.children.length-1;
@@ -185,7 +195,9 @@
                
            }
            num--;
-            annimate(ul,-num*big.offsetWidth);
+            annimate(ul,-num*big.offsetWidth,function(){
+                flag=true;
+            });
            console.log(num);
            
        
@@ -200,6 +212,7 @@
                     ol.children[i].className='';
                 }
            ol.children[circle].className='current';
+           }
 
         });
         var timmer=setInterval(function(){

@@ -75,6 +75,26 @@
               back.style.display='none';
           }
         });
+        goback.addEventListener('click',function(){
+           annimate(window,0);
+        });
+        function annimate(div,target,callback){
+    clearInterval(div.timmer);
+    div.timmer=setInterval(function(){
+        
+        var off =(target-window.pageYOffset)/10;
+        off=off>0?Math.ceil(off):Math.floor(off);
+        if(window.pageYOffset==target)
+        {
+            clearInterval(div.timmer);
+            // 
+            callback&&callback();
+        }
+   
+//   div.style.left=div.offsetLeft+off+'px';
+        window.scroll(0,window.pageYOffset+off);
+    },30);
+}
     </script>
 </body>
 </html>
