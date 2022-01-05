@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+</head>
+<body>
+    
+    <script>
+        
+        let keyword = "内容"; //需要搜索的关键字
+let originalArr = [{"name":"内容","age":"18"},{"name":"内容2","age":"18"},{"name":"内容3","age":"18"}] //原始数组
+if(this.originalArr.filter)
+{
+    let teacherList = this.originalArr.filter(array => array.name.match(keyword)); //关键代码
+}
+
+console.log(teacherList) //匹配筛选之后的目标数组
+    </script>
+</body>
+</html>
