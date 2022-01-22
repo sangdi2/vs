@@ -1,23 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo</title>
-</head>
-<body>
-    
-    <script>
-        
-        let keyword = "内容"; //需要搜索的关键字
-let originalArr = [{"name":"内容","age":"18"},{"name":"内容2","age":"18"},{"name":"内容3","age":"18"}] //原始数组
-if(this.originalArr.filter)
-{
-    let teacherList = this.originalArr.filter(array => array.name.match(keyword)); //关键代码
-}
-
-console.log(teacherList) //匹配筛选之后的目标数组
-    </script>
-</body>
+<html>
+	5261<head>
+		4102<meta charset="UTF-8" />
+		<title>js 刷新页面时 保持1653 菜单 不变</title>
+		<style>
+			.main{ margin: 20px auto; padding: 10px; width: 640px; border: 1px solid #CCC; }
+			.tab{ margin: 10px 0px; padding: 0px; }
+			.tab-menu, .tab-content{ border: 1px solid #ccc; }
+			.tab-menu, .tab-menu li, .tab-content{ margin: 0px; padding: 0px; }
+			.tab-menu{ padding: 2px 10px 0px; list-style-type: none; overflow: hidden; background-color: #ccc; border-bottom-width: 0px; }
+			.tab-menu li{ display: block; float: left; margin: 0px; padding: 5px 10px; outline: none; cursor: pointer; }
+			.tab-selected{ background-color: #fff; }
+			.tab-content{ padding: 10px; border-top-width: 0px; }
+			.tab-item{ display: none; }
+		</style>
+		<script>
+			/*
+				作者：凉心本是优作
+				时间：2018-10-2 18:09:40
+				getCookie和setCookie两个函数不是我写的，这两个函数来源：http://www.w3school.com.cn/js/js_cookies.asp
+				其他的我用Notepad++编写
+				
+				利用cookie实现选项卡保持不变仅仅加了三行代码	83行，84行，111行。
+				选项卡功能只需要保持html结构，并在最后实例化Tab类就可以实现选项卡的功能了
+				这个页面中我实例了两个选项卡
+				
+			*/
+			function getCookie(c_name)
+			{
+				if (document.cookie.length > 0)
+				{
+					c_start = document.cookie.indexOf(c_name + "=")
+					if ( c_start != -1 )
+					{
+						c_start = c_start + c_name.length + 1;
+						c_end = document.cookie.indexOf(";",c_start);
+						if (c_end == -1) c_end = document.cookie.length;
+						return unescape(document.cookie.substring(c_start,c_end));
+					}
+				}
+				return ""
+			}
+			function setCookie(c_name,value,expiredays)
+			{
+				var exdate = new Date();
+				exdate.setDate( exdate.getDate() + expiredays );
+				document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+			}
+		
+			function Tab(element){
+				//变量声明
+				this.box = null; //选项卡元素盒子
+				this.menu = null; //菜单栏元素盒子
+				this.content = null; //内容元素盒子
+				this.index = 0; //当前选项卡索引
+				this.id = 0; //当前实例的id
+				
+				//函数声明
+				this.init = function(element){ //选项卡初始化
+					//获得选项卡盒子并检查
+					this.box = document.getElementById(element);
+					if(this.box == null){
+						//如果实例化的时候指定ID元素还没创建
+						console.log('Tab初始化时候没有获取到元素，请检查元素是否存在');
+						return false;
+					}
+					
+					//获得菜单栏和内容元素并检查
+					this.menu = this.box.getElementsByTagName('ul');//获得菜单栏元素
+					this.content = this.box.getElementsByTagName('div');//获得内容元素
+					if(this.menu.length < 1 && this.content.length < 1){
+						//Tab结构是否规范
+						console.log('Tab缺少菜单栏或内容元素');
+						return false;
+					}else{
+						this.menu = this.menu[0];
+						this.content = this.content[0];
+					}
+					
+					this.id = Tab.items.push(this) - 1; //添加当前实例
+					this.bindingEvents();//绑定按钮事件
+					this.index = getCookie('tab' + this.id);//获取cookie
+					this.index = ((this.index == '') ? 0 : this.index);
+					this.select(this.index);
+				}
+				this.bindingEvents = function(){ //绑定按钮事件
+					var elements = this.menu.getElementsByTagName('li');
+					for(var i = 0; i < elements.length; i++ ){
+						elements[i].tabId = this.id; //选项卡ID
+						elements[i].tabIndex = i; //选项索引
+						elements[i].onclick = function(){
+							Tab.setTab(this.tabId,this.tabIndex);
+						}
+					}
+				}
+				this.select = function(tabIndex){
+					var menus = this.menu.getElementsByTagName('li'),
+						contents = this.content.getElementsByTagName('div');
+					for( var i = 0; i < menus.length; i++ ){
+						if( i == tabIndex){ //当前选中项
+							menus[i].className = 'tab-selected';
+							contents[i].style.display = 'block';
+						}else{ //非选中项
+							menus[i].className = '';
+							contents[i].style.display = 'none';
+						}
+					}
+					this.index = tabIndex;
+					//设置cookie
+					setCookie('tab' + this.id, this.index);
+				}
+				
+				//初始化
+				this.init(element);
+			}
+			Tab.items = []; //用来存储实例化的Tab
+			Tab.setTab = function(tabId,tabIndex){
+				Tab.items[tabId].select(tabIndex);
+			}
+		</script>
+	</head>
+	<body>
+		<div class="main">
+			<div id="testTab" class="tab">
+				<ul class="tab-menu">
+					<li>选项一</li>
+					<li>选项二</li>
+					<li>选项三</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-item">这是选项卡一的内容</div>
+					<div class="tab-item">这是选项卡二的内容</div>
+					<div class="tab-item">这是选项卡三的内容</div>
+				</div>
+			</div>
+			
+			<div id="testTab2" class="tab">
+				<ul class="tab-menu">
+					<li>选项一</li>
+					<li>选项二</li>
+					<li>选项三</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-item">这是选项卡一的内容</div>
+					<div class="tab-item">这是选项卡二的内容</div>
+					<div class="tab-item">这是选项卡三的内容</div>
+				</div>
+			</div>
+		</div>
+		<script>var testTab = new Tab('testTab');//初始化一定要写在元素后面</script>
+		<script>var testTab = new Tab('testTab2');//初始化一定要写在元素后面</script>
+	</body>
 </html>

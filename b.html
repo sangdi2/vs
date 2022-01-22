@@ -8,7 +8,7 @@
 $(function(){
 console.log(decodeURI(location.search.concat()));
 manyValues();
-$("#show").html(oneValues());
+$("#show").val(oneValues());
 })
  
 //接收一个值
@@ -41,6 +41,6 @@ function manyValues() {
 </head>
 <body>
 <span>接收的值是：</span>
-<span id="show"></span>
+<input type="text" id="show">
 </body>
 </html>
