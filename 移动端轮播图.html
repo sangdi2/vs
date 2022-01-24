@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./vs/css/normalize.css">
+    <style>
+        body {
+    width: 100%;
+    min-width:320px;
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #666;
+    line-height: 1.5;
+    background-color: #fff;
+}
+
+        ul {
+            width: 500%;
+            height: 250px;
+           overflow: hidden;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-left: -100%;
+        }
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 250px;
+           
+        }
+        ul li {
+            float: left;
+            width: 20%;
+            height: 250px;
+        }
+        ol {
+            width: 38px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top:226px;
+            left: 350px;
+        }
+        ul li img {
+            width: 100%;
+           height: 100%;
+        }
+        ol li {
+            
+            display: inline-block;
+            
+            width: 5px;
+            height: 5px;
+            background-color: red;
+            border-radius: 3px;
+            transition: all .3s;
+        }
+        
+            
+           
+        
+       .current {
+            width: 15px;
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+    <ul>
+        <li><img src="./vs/pic/four.jpg"></li>
+        <li><img src="./vs/pic/two.jpg"></li>
+        <li><img src="./vs/pic/three.jpg"></li>
+        <li><img src="./vs/pic/four.jpg"></li>
+        <li><img src="./vs/pic/two.jpg"></li>
+    </ul>
+    <ol>
+        <li class="current"></li>
+        <li></li>
+        <li></li>
+    </ol>
+    </div>
+    <script>
+        var bannerr= document.querySelector('.banner');
+        var ul =bannerr.children[0];
+        var ol =bannerr.children[1];
+        var w =bannerr.offsetWidth;
+        var index =0;
+        var timmer =setInterval(function(){
+           index++;
+           var translatex =-(index*w)
+           ul.style.transition='all .3s';
+           ul.style.transform = 'translateX('+ translatex+'px)'
+        },2000);
+        ul.addEventListener('transitionend',function(){
+            if(index>=3)
+            {
+                index=0;
+                ul.style.transition='none';
+                var translatex =-(index*w);
+                ul.style.transform = 'translateX('+ translatex+'px)';
+            }else if (index<0)
+            {
+                index=2;
+                ul.style.transition='none';
+                var translatex =-(index*w);
+                ul.style.transform = 'translateX('+ translatex+'px)';
+            }
+            ol.querySelector('.current').classList.remove('current');
+        ol.children[index].classList.add('current');
+        });
+        var start=0;
+        var movex =0;
+        var flag=false;
+        ul.addEventListener('touchstart',function(e){
+           start =e.targetTouches[0].pageX;
+           clearInterval(timmer);
+        });
+        ul.addEventListener('touchmove',function(e){
+           movex = e.targetTouches[0].pageX-start;
+           var tranlatex = -index*w + movex;
+           ul.style.transition ='none';
+           ul.style.transform='translateX('+tranlatex+'px)';
+           flag=true;
+           e.preventDefault();
+        });
+        ul.addEventListener('touchend',function(e){
+            if(flag)
+            {
+                if(Math.abs(movex)>50)
+          {
+              if(movex>0)
+              {
+                  index--;
+              }else {
+                  index++;
+              }
+            var tranlatex = -index*w ;
+           ul.style.transition ='all .3s';
+           ul.style.transform='translateX('+tranlatex+'px)';
+          }else {
+            var tranlatex = -index*w ;
+           ul.style.transition ='all .1s';
+           ul.style.transform='translateX('+tranlatex+'px)';
+          }
+            }
+
+          clearInterval(timmer);
+          timmer =setInterval(function(){
+           index++;
+           var translatex =-(index*w)
+           ul.style.transition='all .3s';
+           ul.style.transform = 'translateX('+ translatex+'px)'
+        },2000);
+           
+        });
+        
+    </script>
+       
+</body>
+</html>
